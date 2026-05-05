@@ -1,12 +1,13 @@
 from datetime import datetime
 from functools import wraps
+import os
 import sqlite3
 
 from flask import Flask, flash, g, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
 app.secret_key = "food-donation-secret-key"
-DATABASE = "database1.db"
+DATABASE = "/tmp/database1.db" if os.environ.get("VERCEL") else "database1.db"
 
 
 def get_db():
