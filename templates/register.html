@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}FoodShare | {{ role.title() }} Registration{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-copy">
+        <span class="eyebrow">{{ role.title() }} Registration</span>
+        <h1>Create your {{ role }} account.</h1>
+        <p>
+            {% if role == 'donor' %}
+                Register to list surplus meals, track donation history, and connect with verified NGOs.
+            {% else %}
+                Register your organization to view available donations, accept pickup requests, and manage rescue operations.
+            {% endif %}
+        </p>
+    </div>
+
+    <form class="form-card" method="post">
+        <label>Full Name
+            <input type="text" name="name" required>
+        </label>
+        <label>Email Address
+            <input type="email" name="email" required>
+        </label>
+        <label>Password
+            <input type="password" name="password" required>
+        </label>
+        <label>Phone Number
+            <input type="text" name="phone" required>
+        </label>
+        <label>Address
+            <textarea name="address" rows="3" required></textarea>
+        </label>
+        <label>{% if role == 'ngo' %}Organization Name{% else %}Household / Business Name{% endif %}
+            <input type="text" name="organization" required>
+        </label>
+        <button class="button primary" type="submit">Register {{ role.title() }}</button>
+    </form>
+</section>
+{% endblock %}

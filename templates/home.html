@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}FoodShare | Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="eyebrow">Community Food Donation Platform</span>
+        <h1>Connect donors, NGOs, and communities through one reliable food rescue network.</h1>
+        <p class="hero-copy">
+            FoodShare helps households, restaurants, and event organizers donate extra food while NGOs
+            quickly discover, accept, and collect available meals.
+        </p>
+        <div class="hero-actions">
+            <a class="button primary" href="{{ url_for('register', role='donor') }}">Become a Donor</a>
+            <a class="button secondary" href="{{ url_for('register', role='ngo') }}">Join as NGO</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <h3>Live Platform Snapshot</h3>
+        <ul class="stats-list">
+            <li><strong>{{ stats.total_donations }}</strong><span>Total donations</span></li>
+            <li><strong>{{ stats.available_donations }}</strong><span>Open pickup requests</span></li>
+            <li><strong>{{ stats.accepted_donations }}</strong><span>Accepted donations</span></li>
+            <li><strong>{{ stats.total_ngos }}</strong><span>Registered NGOs</span></li>
+        </ul>
+    </div>
+</section>
+
+<section class="section-grid">
+    <article class="info-card">
+        <h2>How it works</h2>
+        <p>Donors submit food details, NGOs claim available donations, and admins keep the entire network visible and manageable.</p>
+    </article>
+    <article class="info-card">
+        <h2>Who can use it</h2>
+        <p>Families, restaurants, hostels, event planners, relief organizations, and volunteers can all coordinate from one place.</p>
+    </article>
+    <article class="info-card">
+        <h2>What is included</h2>
+        <p>Donor dashboard, NGO dashboard, admin panel, donation history, contact page, and database-backed registration and login.</p>
+    </article>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <span class="eyebrow">Recent activity</span>
+            <h2>Newest donation listings</h2>
+        </div>
+    </div>
+    <div class="card-grid">
+        {% for donation in recent_donations %}
+            <article class="data-card">
+                <h3>{{ donation.food_type }}</h3>
+                <p>{{ donation.quantity }} from {{ donation.donor_name }}</p>
+                <p>{{ donation.location }}, {{ donation.city }}</p>
+                <span class="status status-{{ donation.status|lower }}">{{ donation.status }}</span>
+            </article>
+        {% else %}
+            <article class="empty-state">
+                <h3>No donations yet</h3>
+                <p>The first listings will appear here once donors start posting food availability.</p>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

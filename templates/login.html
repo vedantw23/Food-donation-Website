@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}FoodShare | Login{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-copy">
+        <span class="eyebrow">Login</span>
+        <h1>Sign in to your dashboard.</h1>
+        <p>Donors, NGOs, and admins all use the same login page.</p>
+        <div class="credentials-card">
+            <h3>Demo admin access</h3>
+            <p>Email: <strong>admin@foodshare.com</strong></p>
+            <p>Password: <strong>admin123</strong></p>
+        </div>
+    </div>
+
+    <form class="form-card" method="post">
+        <label>Email Address
+            <input type="email" name="email" required>
+        </label>
+        <label>Password
+            <input type="password" name="password" required>
+        </label>
+        <button class="button primary" type="submit">Login</button>
+    </form>
+</section>
+{% endblock %}
